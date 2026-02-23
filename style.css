@@ -1,1 +1,66 @@
 /* Sheet of Style */
+
+* {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    width: 80vh;
+    text-align: center;
+}
+
+#gameDisplay {
+    width: 80vw;
+    margin: 2rem 3rem 1rem;
+
+
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+#gameDisplay button {
+    height: 2rem;
+    width: 6rem;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    border-radius: 10%;
+}
+
+#score {
+    font-size: large;
+    font-weight: bold;
+
+}
+
+#score p:first-child {
+    margin-right: 2rem;
+}
+
+.gameboard {
+    height: auto;
+    background-color: black;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.spot {
+    font-size: 800%;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
