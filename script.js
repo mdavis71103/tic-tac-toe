@@ -4,7 +4,6 @@
 /* Factories */
 
 const gameBoard = (() => {
-    let gameOn = true;
     const board = document.getElementsByClassName("spot");
 
     const topRow = [board[0], board[1], board[2]];
@@ -17,27 +16,27 @@ const gameBoard = (() => {
     const backwardDiag = [board[0], board[4], board[8]];
     const waysToWin = [topRow, midRow, botRow, firstCol, secondCol, thirdCol, forwardDiag, backwardDiag];
 
+    // Array.from(board).forEach((spot) => 
+    //         spot.addEventListener("click", (event) => {
+    //             if(event.target.textContent === ""){
+    //                 event.target.textContent = "X";
+                    
+    //             }
+    //         })
+    //     );
 
-    Array.from(board).forEach((spot) => 
-            spot.addEventListener("click", (event) => {
-                event.target.textContent = "X";
-            })
-        );
-
-    function displayBoard() {
-        Array.from(board).forEach((spot) => 
-            console.log(spot.textContent)
-        );
-    };
+    function getSpots(){
+        return board;
+    }
 
     function clearBoard(){
-         Array.from(board).forEach((spot) => 
+        Array.from(board).forEach((spot) => 
             spot.textContent = ""
         );
     }
 
-    function playerMove(playerMark, spotNumber){
-        board[spotNumber].textContent = playerMark;
+    function markSpot(mark, spot){
+        board[spot].textContent = mark;
     }
 
     function checkForWinner(){
@@ -49,53 +48,100 @@ const gameBoard = (() => {
             if(allFilled(way) && allEqual(way)){
 
                 console.log(way);
-                return console.log(`${way[0].textContent} wins!`);
-                
+                return [way[0].textContent, way]
             }
         }
 
     }
-
-    return {displayBoard, clearBoard, playerMove, checkForWinner};
-
+    return {clearBoard, checkForWinner, getSpots, markSpot};
 })();
 
-function player(name, mark, score) {
 
-    function win(){
+function player(name, mark) {
+    let score = 0;
+
+    function incrementScore(){
         score += 1;
     }
 
-}
+    function getScore(){
+        return score;
+    }
 
-function startGame(){
+    function getName(){
+        return name;
+    }
 
-    //Reset board
-    //Allow event listeners
-    //check if game is over
-    //continue with other turns
-    //declare winner
-    //incremnt score
+    function getMark(){
+        returnMark;
+    }
 
-}
-
-function setup() {
-    //get elements
-    
-
-    //create players
-    //create board
-    //reset scores?
-
-    return function reset() {
-    //clear board
-    //randomize who goes first
-}
+    return {incrementScore, getScore, getName, getMark}
 
 }
 
+function playGame(){
+
+    gameOn = true;
+    yourTurn = false;
+
+    const spots = gameBoard.getSpots();
+    console.log(spots);
+    Array.from(spots).forEach((spot) => 
+        spot.addEventListener("click", (event) => {
+            if(event.target.textContent === ""){
+                event.target.textContent = "X";
+                gameBoard.checkForWinner();
+                cpuTurn();
+                gameBoard.checkForWinner();
+            }
+        }))
 
 
-gameBoard.clearBoard();
-gameBoard.playerMove("X", 4);
+
+    // while(gameOn){
+    //     /* 1st player turn
+    //         check for winner
+    //         2nd player turn
+    //         check for winner
+    //         */
+    //     cpuTurn();
+    //     gameBoard.checkForWinner();
+    //     playerTurn();
+    //     gameBoard.checkForWinner();
+        
+    // }
+
+
+    function gameOver(){
+        /* GameOver
+            Mark Winning Area
+            Alert Winner
+            Increment score
+            Ask to play again
+        */
+    }
+
+    function cpuTurn(){
+        let myTurn = true;
+        while(myTurn){
+            let spot = Math.floor(Math.random() * 8) + 1;
+            if(spots[spot].textContent === ""){
+                gameBoard.markSpot("O", spot);
+                myTurn = false;
+            }
+            
+        }
+
+    }
+
+    function playerTurn(){
+
+    }
+}
+
+playGame();
+
+
+
 
