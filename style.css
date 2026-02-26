@@ -32,13 +32,13 @@
     border-radius: 10%;
 }
 
-#score {
+#scoreBoard {
     font-size: large;
     font-weight: bold;
 
 }
 
-#score p:first-child {
+#scoreBoard p:nth-child(2) {
     margin-right: 2rem;
 }
 
@@ -57,7 +57,9 @@
 
 
 .spot {
-    font-size: 800%;
+    height: 20vh;
+    width: 33vw;
+    font-size: 20vh;
     background-color: white;
 
     display: flex;
